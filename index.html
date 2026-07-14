@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Vize - Vize Mühendisliği</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0A192F',
+                            800: '#112240',
+                        },
+                        brand: {
+                            light: '#F8FAFC',
+                            green: '#25D366',
+                            blue: '#0066FF',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #0A192F 0%, #112240 50%, #1A365D 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pulse-effect {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-brand-light antialiased selection:bg-blue-200 selection:text-navy-900">
+
+    <!-- 1. NAVIGATION HEADER -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <img src="./logo.png" alt="Go Vize Logo" class="h-20 w-auto">
+                </div>
+                <!-- Navigation Links (Middle on Desktop) -->
+                <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+                    <a href="#" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Ana Sayfa</a>
+                    <a href="#hizmetler" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Hizmetlerimiz</a>
+                    <a href="#vize-hesaplama" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Onay Testi</a>
+                    <a href="#nasil-calisir" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Nasıl Çalışır?</a>
+                    <a href="#yorumlar" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Yorumlar</a>
+                    <a href="#faq" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">S.S.S.</a>
+                </div>
+                <!-- Contact Right -->
+                <div class="flex items-center space-x-4 sm:space-x-8">
+                    <div class="hidden sm:flex items-center text-slate-600 font-medium hover:text-brand-blue transition-colors duration-300">
+                        <i class="fa-solid fa-phone mr-2 text-brand-blue"></i>
+                        <a href="tel:+905015818619">+90 501 581 8619</a>
+                    </div>
+                    <a href="https://wa.me/+905015818619" target="_blank" rel="noopener noreferrer" class="flex items-center bg-brand-green text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <section class="relative bg-hero-gradient text-white overflow-hidden py-24 lg:py-32">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500 blur-[100px]"></div>
+            <div class="absolute bottom-0 left-20 w-72 h-72 rounded-full bg-brand-blue blur-[80px]"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-900/50 border border-blue-700/50 text-blue-200 text-sm font-semibold tracking-wider mb-6 uppercase">
+                Premium Vize Danışmanlığı
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight max-w-4xl">
+                Sıradan Vize Takipçilerini Unutun, <br class="hidden md:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-white">Vize Mühendisliği</span> ile Tanışın!
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mb-12 leading-relaxed">
+                İngiltere ve Amerika vizelerinde şansa yer bırakmayan, finansal ve yapısal dosya mühendisliği ile onay oranınızı zirveye taşıyın.
+            </p>
+            <a href="https://wa.me/+905015818619" target="_blank" rel="noopener noreferrer" class="pulse-effect inline-flex items-center justify-center bg-brand-green text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transform hover:-translate-y-1">
+                <i class="fa-brands fa-whatsapp text-2xl mr-3"></i>
+                WhatsApp ile İletişime Geçin
+            </a>
+        </div>
+    </section>
+
+    <!-- 3. PAIN POINTS SECTION -->
+    <section id="hizmetler" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Çözülmesi İmkansız Görünen Dosyaları Nasıl Onaylatıyoruz?</h2>
+                <div class="w-24 h-1 bg-brand-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-light rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-400 group transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-brand-blue group-hover:text-white">
+                        <i class="fa-solid fa-wallet text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Nakit Gelir & Finans</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm lg:text-base">
+                        Resmi geliriniz ile gerçek kazancınız uyuşmuyor mu? Maaşınızın bir kısmını elden alıyor olsanız bile, bu finansal durumu konsolosluğun kabul edeceği yasal ve kusursuz bir finansal senaryoya dönüştürüyoruz.
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-brand-light rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-400 group transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-brand-blue group-hover:text-white">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Vize Reddi Kurtarma</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm lg:text-base">
+                        Daha önce ret mi aldınız? Eski hataları adeta bir adli tıp uzmanı gibi analiz ediyor, mektuptaki satır arası endişeleri çözerek sarsılmaz bir savunma dosyasıyla vizenizi bu kez söke söke alıyoruz.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-light rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-400 group transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-brand-blue group-hover:text-white">
+                        <i class="fa-solid fa-anchor text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Türkiye'ye Bağlar</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm lg:text-base">
+                        Tapu veya basit iş yeri belgeleri artık yetersiz. Profilinizi analiz edip sizi bu ülkeye bağlayan, memurun görmezden gelemeyeceği kişiye özel 'sosyal ve ekonomik çapalar' tasarlıyoruz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISA CALCULATOR QUIZ SECTION -->
+    <section id="vize-hesaplama" class="py-24 bg-brand-light relative border-t border-b border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Onay Oranı Hesaplayıcı</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Vize Onay İhtimalinizi Test Edin</h2>
+                <p class="text-slate-600 text-sm md:text-base max-w-lg mx-auto">Vize Mühendisliği algoritmamız ile profilinizin güçlü ve zayıf yanlarını 1 dakikada analiz edin.</p>
+                <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 relative overflow-hidden">
+                <!-- Progress Bar Container -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2 text-xs md:text-sm font-semibold text-slate-500">
+                        <span id="quiz-step-indicator">Soru 1 / 5</span>
+                        <span id="quiz-progress-text" class="text-brand-blue">20%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="bg-gradient-to-r from-brand-blue to-brand-green h-full w-1/5 transition-all duration-500 ease-out"></div>
+                    </div>
+                </div>
+
+                <!-- Questions Container -->
+                <div id="quiz-questions-wrapper">
+                    <!-- Step 1 -->
+                    <div class="quiz-step block" data-step="1">
+                        <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-6">1. Gitmek istediğiniz hedef ülke hangisidir?</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q1" value="ingiltere" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue" checked>
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">İngiltere</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q1" value="abd" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Amerika Birleşik Devletleri (ABD)</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q1" value="schengen" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Schengen Bölgesi / Diğer</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="quiz-step hidden" data-step="2">
+                        <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-6">2. Güncel iş ve mesleki durumunuz nedir?</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q2" value="sgk" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue" checked>
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Düzenli Maaşlı Çalışan (SGK'lı)</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q2" value="isveren" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Şirket Sahibi / Ortağı</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q2" value="freelance" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Serbest Çalışan (Freelancer / Danışman)</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q2" value="nakit" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Nakit Gelirli / Kayıt Dışı Çalışan</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q2" value="diger" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Öğrenci, Ev Hanımı veya Çalışmıyor</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="quiz-step hidden" data-step="3">
+                        <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-6">3. Banka hesap hareketleri ve finansal durumunuz hangisidir?</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q3" value="uyumlu" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue" checked>
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Banka hareketleri ve resmi gelirlerim uyumlu ve yüksek</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q3" value="nakit_elde" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Gelirimin bir kısmı elden alınıyor, bankada birikim var</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q3" value="resmi_dusuk" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Resmi gelirim düşük, ancak banka hesabım aktif</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q3" value="zayif" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Banka hesabında düzenli hareket veya birikmiş bakiye yok</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="quiz-step hidden" data-step="4">
+                        <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-6">4. Geçmişte herhangi bir vize reddi aldınız mı?</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q4" value="yok" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue" checked>
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Hayır, hiçbir ülkeden vize reddim yok</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q4" value="bir" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Evet, daha önce 1 kez vize reddi aldım</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q4" value="cok" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Evet, birden fazla (2+) vize reddi aldım</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="quiz-step hidden" data-step="5">
+                        <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-6">5. Türkiye'ye olan bağlarınızı (çapalar) nasıl görüyorsunuz?</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q5" value="guclu" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue" checked>
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Çok Güçlü (Kendi işim, tapu, araç, aile birliği vb. var)</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q5" value="orta" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Orta Düzey (Düzenli SGK'lı iş, kira sözleşmesi var)</span>
+                            </label>
+                            <label class="flex items-center p-4 rounded-xl border border-slate-200 hover:border-brand-blue hover:bg-blue-50/30 cursor-pointer transition-all duration-200 group">
+                                <input type="radio" name="q5" value="zayif" class="w-5 h-5 text-brand-blue border-slate-300 focus:ring-brand-blue">
+                                <span class="ml-4 font-semibold text-slate-800 text-sm md:text-base group-hover:text-brand-blue transition-colors">Zayıf (Geri dönmemi zorunlu kılacak resmi bir bağ yok)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+                    <button id="quiz-prev-btn" class="hidden px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">Geri</button>
+                    <div class="flex-grow"></div>
+                    <button id="quiz-next-btn" class="px-8 py-3 rounded-xl bg-brand-blue text-white font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5">İleri</button>
+                </div>
+
+                <!-- Result Screen (Initially Hidden) -->
+                <div id="quiz-result-screen" class="hidden text-center py-6">
+                    <div class="inline-flex items-center justify-center relative w-40 h-40 mb-6">
+                        <!-- Progress Circle background -->
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="42" stroke="#F1F5F9" stroke-width="8" fill="transparent" />
+                            <circle id="quiz-result-progress" cx="50" cy="50" r="42" stroke="#0066FF" stroke-width="8" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" class="transition-all duration-1000 ease-out" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span id="quiz-score-val" class="text-4xl font-extrabold text-navy-900">0%</span>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Onay Oranı</span>
+                        </div>
+                    </div>
+
+                    <h3 id="quiz-status-title" class="text-2xl font-extrabold text-navy-900 mb-4">Profil Analiziniz Tamamlandı</h3>
+                    <p id="quiz-status-desc" class="text-slate-600 text-sm md:text-base max-w-lg mx-auto mb-8 leading-relaxed"></p>
+
+                    <div class="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 mb-8 text-left max-w-lg mx-auto">
+                        <h4 class="font-bold text-navy-900 mb-2 flex items-center">
+                            <i class="fa-solid fa-lightbulb text-amber-500 mr-2 text-lg"></i>
+                            Vize Mühendisinin Tavsiyesi:
+                        </h4>
+                        <p id="quiz-advice-text" class="text-sm text-slate-600 leading-relaxed"></p>
+                    </div>
+
+                    <a id="quiz-whatsapp-cta" href="https://wa.me/+905015818619" target="_blank" rel="noopener noreferrer" class="pulse-effect inline-flex items-center justify-center bg-brand-green text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.6)] transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl mr-3"></i>
+                        Ücretsiz Detaylı Analiz Alın
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY TIMELINE SECTION -->
+    <section id="nasil-calisir" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-slate-50/50 pointer-events-none"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Yöntemimiz</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Vize Mühendisliği Nasıl Çalışır?</h2>
+                <p class="text-slate-600 text-sm md:text-base">Vizeleri sıradan bir aracı gibi evrak toplayarak değil, her dosyayı ince ince tasarlayarak alıyoruz.</p>
+                <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative">
+                <!-- Center line for desktop -->
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-blue-200 via-brand-blue to-green-200 h-full"></div>
+
+                <!-- Steps -->
+                <div class="space-y-12 lg:space-y-20 relative">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col lg:flex-row items-center group">
+                        <!-- Left text -->
+                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
+                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 1</span>
+                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Dosya Auditi & Boşluk Analizi</h3>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Profilinizi adeta bir konsolosluk memuru gözüyle inceliyor; nakit gelir, zayıf bağlar veya geçmiş retler gibi risk barındıran noktaları tek tek tespit ediyoruz.
+                            </p>
+                        </div>
+                        <!-- Center Badge -->
+                        <div class="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300 relative">
+                            01
+                            <div class="absolute -inset-1 rounded-full border border-blue-600/30 animate-ping opacity-75"></div>
+                        </div>
+                        <!-- Right empty (placeholder for desktop symmetry) -->
+                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col lg:flex-row items-center group">
+                        <!-- Left empty -->
+                        <div class="hidden lg:block w-full lg:w-1/2 lg:pr-16 text-right order-1"></div>
+                        <!-- Center Badge -->
+                        <div class="w-16 h-16 rounded-full bg-blue-500 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
+                            02
+                        </div>
+                        <!-- Right text -->
+                        <div class="w-full lg:w-1/2 lg:pl-16 text-center lg:text-left order-2 mt-6 lg:mt-0">
+                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 2</span>
+                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Yapısal Dosya Mimarlığı</h3>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Tespit edilen açıklar için kişiye özel yasal finansal senaryolar ve "sosyal çapalar" üretiyoruz. Sıradan evrakları sarsılmaz bir savunma dosyasına dönüştürüyoruz.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col lg:flex-row items-center group">
+                        <!-- Left text -->
+                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
+                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 3</span>
+                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Adli Tıp Hassasiyetinde İnceleme</h3>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Tüm finansal dökümleri, banka giriş-çıkışlarını ve destekleyici belgeleri çapraz kontrole tabi tutarak tutarsızlıkları tamamen ortadan kaldırıyoruz.
+                            </p>
+                        </div>
+                        <!-- Center Badge -->
+                        <div class="w-16 h-16 rounded-full bg-blue-700 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
+                            03
+                        </div>
+                        <!-- Right empty -->
+                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col lg:flex-row items-center group">
+                        <!-- Left empty -->
+                        <div class="hidden lg:block w-full lg:w-1/2 lg:pr-16 text-right order-1"></div>
+                        <!-- Center Badge -->
+                        <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
+                            04
+                        </div>
+                        <!-- Right text -->
+                        <div class="w-full lg:w-1/2 lg:pl-16 text-center lg:text-left order-2 mt-6 lg:mt-0">
+                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 4</span>
+                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">İkna Gücü Yüksek Niyet Mektubu</h3>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Memurun satır aralarını okuyarak her türlü şüpheyi daha uyanmadan yok eden, uluslararası standartlarda, profesyonel bir niyet mektubu kaleme alıyoruz.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="flex flex-col lg:flex-row items-center group">
+                        <!-- Left text -->
+                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
+                            <span class="text-xs font-bold text-brand-green bg-green-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2 text-green-600">Aşama 5</span>
+                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-green transition-colors">Kusursuz Sunum ve Onay</h3>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Dosyanızı konsolosluk sistemlerine dijital olarak en optimal hiyerarşide yüklüyor, süreci son saniyeye kadar takip ederek vize onayınızı güvenceye alıyoruz.
+                            </p>
+                        </div>
+                        <!-- Center Badge -->
+                        <div class="w-16 h-16 rounded-full bg-brand-green text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300 relative">
+                            05
+                            <div class="absolute -inset-1 rounded-full border border-brand-green/30 animate-ping opacity-75"></div>
+                        </div>
+                        <!-- Right empty -->
+                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. AUTHORITY SECTION -->
+    <section class="py-24 bg-navy-900 text-white border-t-4 border-brand-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Neden Go Vize?</h2>
+                <div class="w-24 h-1 bg-brand-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 divide-y md:divide-y-0 md:divide-x divide-slate-700">
+                <!-- Stat 1 -->
+                <div class="flex flex-col items-center text-center px-4 pt-8 md:pt-0">
+                    <div class="text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white mb-4">
+                        250+
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Başarılı İngiltere Vizesi Başvurusu</h3>
+                    <p class="text-slate-400 max-w-sm">
+                        Yalnızca en zorlu dosyaları alıyor ve kusursuz dosya mimarisiyle kanıtlanmış bir başarı oranı sunuyoruz. İngiltere vizelerinde emsalsiz bir geçmişe sahibiz.
+                    </p>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="flex flex-col items-center text-center px-4 pt-12 md:pt-0">
+                    <div class="text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white mb-4">
+                        %98
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">İlk Başvuruda Onay Oranı</h3>
+                    <p class="text-slate-400 max-w-sm">
+                        Dosyalarınızı konsolosluk yetkililerinin beklentilerine tam uyumlu hale getiriyor, ret riskini minimuma indirerek rekor başarı sağlıyoruz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="yorumlar" class="py-24 bg-brand-light relative border-t border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Başarı Hikayeleri</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Onay Alan Danışanlarımızın Yorumları</h2>
+                <p class="text-slate-600 text-sm md:text-base">Özellikle vize reddi almış veya zorlu finansal duruma sahip danışanlarımızın başarı hikayelerini inceleyin.</p>
+                <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                        </div>
+                        <!-- Tag -->
+                        <span class="inline-block px-3 py-1 bg-green-50 text-brand-green text-xs font-bold rounded-full mb-4">İngiltere Vizesi | Nakit Gelir</span>
+                        <!-- Comment -->
+                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
+                            "Freelance çalıştığım için düzenli maaş bordrom yoktu ve çoğu acente 'vize alamazsın' dedi. Go Vize ekibi nakit gelirlerimi resmi ve son derece tutarlı bir finansal senaryoya dönüştürdü. Sonuç: İngiltere vizem ilk başvuruda onaylandı!"
+                        </p>
+                    </div>
+                    <!-- Client Info -->
+                    <div class="flex items-center pt-6 border-t border-slate-50">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
+                            AY
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Ahmet Y.</h4>
+                            <p class="text-xs text-slate-400">Yazılım Geliştirici (Freelancer)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                        </div>
+                        <!-- Tag -->
+                        <span class="inline-block px-3 py-1 bg-blue-50 text-brand-blue text-xs font-bold rounded-full mb-4">Vize Reddi Kurtarma | 2 Ret Sonrası</span>
+                        <!-- Comment -->
+                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
+                            "Daha önce başka firmalarla yaptığım 2 başvurudan da ret almıştım. Umudumu tamamen yitirmişken Go Vize ile tanıştım. Eski ret gerekçelerini adli tıp hassasiyetinde analiz edip niyet mektubunda memurun tüm şüphelerini yok ettiler. Vizemi söke söke aldık!"
+                        </p>
+                    </div>
+                    <!-- Client Info -->
+                    <div class="flex items-center pt-6 border-t border-slate-50">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
+                            EB
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Elif B.</h4>
+                            <p class="text-xs text-slate-400">İnsan Kaynakları Uzmanı</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                            <i class="fa-solid fa-star ml-1"></i>
+                        </div>
+                        <!-- Tag -->
+                        <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full mb-4">ABD Vizesi | Türkiye'ye Bağlar</span>
+                        <!-- Comment -->
+                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
+                            "ABD konsolosluğunun mülakatta bağlarımı sorgulayacağını biliyorduk. Go Vize ekibi mülakat öncesi beni harika bir simülasyonla hazırladı ve Türkiye'ye bağlarımı kanıtlayan kusursuz bir dosya kurguladı. Mülakatım 1 dakika sürdü ve onaylandı!"
+                        </p>
+                    </div>
+                    <!-- Client Info -->
+                    <div class="flex items-center pt-6 border-t border-slate-50">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
+                            CM
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Caner M.</h4>
+                            <p class="text-xs text-slate-400">Klinik Sahibi (Diş Hekimi)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION WITH ACCORDIONS -->
+    <section id="faq" class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Sıkça Sorulan Sorular</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Merak Edilenler & Uzman Cevapları</h2>
+                <p class="text-slate-600 text-sm md:text-base">Vize süreçleri, nakit gelir beyanları ve ret durumları hakkında en çok sorulan sorular.</p>
+                <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Accordion Group -->
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none group">
+                        <span class="font-bold text-navy-900 text-sm md:text-base group-hover:text-brand-blue transition-colors">Resmi gelirim ile gerçek kazancım uyuşmuyor (nakit gelir alıyorum), vize alabilir miyim?</span>
+                        <span class="faq-icon-wrapper ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden border-t border-slate-100 bg-slate-50/50 p-6">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Evet. En çok karşılaştığımız ve başarıyla onay aldığımız dosya tiplerinden biridir. Maaşınızın bir kısmı elden ödeniyor veya tamamen nakit kazanıyor olsanız bile, bu durumu konsolosluğun kabul edeceği yasal destekleyici belgeler ve yapısal finansal senaryolar kurgulayarak onaylanabilir sarsılmaz bir dosya haline getiriyoruz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none group">
+                        <span class="font-bold text-navy-900 text-sm md:text-base group-hover:text-brand-blue transition-colors">Daha önce vize reddi aldım. Tekrar başvurup onay almam mümkün mü?</span>
+                        <span class="faq-icon-wrapper ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden border-t border-slate-100 bg-slate-50/50 p-6">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Kesinlikle evet. Daha önce ret almış olmanız kalıcı bir engel değildir. Önemli olan, ret mektubundaki satır arası endişeleri ve memurun asıl şüphelendiği noktaları "adli tıp" uzmanı titizliğiyle tespit edip, yeni dosyanızda bunları çürüten ek yasal deliller ve güçlü bir savunma niyet mektubu sunmaktır. Go Vize olarak ret kurtarma konusunda emsalsiz bir başarıya sahibiz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none group">
+                        <span class="font-bold text-navy-900 text-sm md:text-base group-hover:text-brand-blue transition-colors">Üzerime kayıtlı tapu, araç veya resmi mal varlığı olmak zorunda mı?</span>
+                        <span class="faq-icon-wrapper ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden border-t border-slate-100 bg-slate-50/50 p-6">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Hayır, kesinlikle zorunlu değildir. Mal varlığı sahibi olmak vize onayını garantilemediği gibi, olmaması da bir ret sebebi değildir. Konsolosluk memurunun asıl incelediği konu Türkiye'deki kurulu düzeniniz, gelir akışınızın sürekliliği ve geri dönmenizi gerektirecek "sosyal ve ekonomik çapalar"dır. Doğru bir dosya kurgusu ile hiç mal varlığınız olmasa bile yüksek onay oranlarına ulaşabilirsiniz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none group">
+                        <span class="font-bold text-navy-900 text-sm md:text-base group-hover:text-brand-blue transition-colors">Go Vize vize onay garantisi veriyor mu?</span>
+                        <span class="faq-icon-wrapper ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden border-t border-slate-100 bg-slate-50/50 p-6">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Dünyadaki hiçbir yasal kurum veya danışman konsolosluk yerine karar veremez ve %100 vize garantisi taahhüt edemez. Bizim yaptığımız iş "Vize Mühendisliği"dir. Sıradan evrak toplayıcıların aksine, dosyanızı yapısal ve finansal açıdan tamamen kusursuzlaştırır, memurun ret vermesine neden olabilecek her türlü açığı kapatırız. Bu titizlik bize emsalsiz onay başarıları kazandırmaktadır.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 bg-white">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none group">
+                        <span class="font-bold text-navy-900 text-sm md:text-base group-hover:text-brand-blue transition-colors">Süreç nasıl işliyor ve ne kadar sürüyor?</span>
+                        <span class="faq-icon-wrapper ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden border-t border-slate-100 bg-slate-50/50 p-6">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Sürecimiz WhatsApp üzerinden yapacağımız ücretsiz bir ön analiz ile başlar. Profilinizin başvuruya uygunluğunu onayladıktan sonra dosya mimarisi sürecine geçeriz. Belgelerinizin toplanması, çapraz kontrolü, niyet mektubunun hazırlanması ve başvuru sistemine yüklenmesi genellikle 5-7 iş günü sürer. Ardından randevu ve konsolosluk inceleme süreci başlar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FINAL CTA SECTION -->
+    <section class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white rounded-3xl shadow-xl p-10 md:p-16 border border-slate-100">
+                <h2 class="text-2xl md:text-3xl font-bold text-navy-900 mb-4 tracking-tight">Hayallerinizi Şansa Bırakmayın, Profesyonellerle Yola Çıkın.</h2>
+                <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+                    Bütçenizi ve zamanınızı koruyun. Hemen uzmanlarımızla doğrudan iletişime geçin. Sizin için en doğru yol haritasını birlikte çizelim.
+                </p>
+                <a href="https://wa.me/+905015818619" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-brand-green text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-1 transform w-full sm:w-auto">
+                    <i class="fa-brands fa-whatsapp text-2xl mr-3"></i>
+                    WhatsApp ile İletişime Geçin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="bg-navy-900 text-slate-300 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-center gap-6">
+            
+            <div class="text-center lg:text-left flex-1">
+                <img src="./logo.png" alt="Go Vize Logo" class="h-16 w-auto mb-3 mx-auto lg:mx-0 opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <p class="text-xs text-slate-500 lg:whitespace-nowrap">
+                    Go Vize, bağımsız ve özel bir vize danışmanlık firmasıdır. Konsolosluklarla resmi bir bağı bulunmamakta olup, profesyonel dosya hazırlama hizmeti sunar.
+                </p>
+            </div>
+            
+            <div class="text-sm text-slate-500 text-center lg:text-right mt-4 lg:mt-0">
+                &copy; 2026 Go Vize. Tüm Hakları Saklıdır.
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Floating Action Widgets -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-4">
+        <!-- Back to Top Button -->
+        <button id="back-to-top" class="opacity-0 translate-y-10 pointer-events-none w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center shadow-lg hover:bg-brand-blue transition-all duration-300 transform hover:-translate-y-1 focus:outline-none">
+            <i class="fa-solid fa-arrow-up text-lg"></i>
+        </button>
+        <!-- Floating WhatsApp Widget -->
+        <a href="https://wa.me/+905015818619" target="_blank" rel="noopener noreferrer" class="pulse-effect w-14 h-14 rounded-full bg-brand-green text-white flex items-center justify-center shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:-translate-y-1">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </a>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT FOR QUIZ & OTHER WIDGETS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // QUIZ LOGIC
+            const steps = document.querySelectorAll('.quiz-step');
+            const prevBtn = document.getElementById('quiz-prev-btn');
+            const nextBtn = document.getElementById('quiz-next-btn');
+            const stepIndicator = document.getElementById('quiz-step-indicator');
+            const progressText = document.getElementById('quiz-progress-text');
+            const progressBar = document.getElementById('quiz-progress-bar');
+            const questionsWrapper = document.getElementById('quiz-questions-wrapper');
+            const resultScreen = document.getElementById('quiz-result-screen');
+            const scoreVal = document.getElementById('quiz-score-val');
+            const resultProgress = document.getElementById('quiz-result-progress');
+            const statusTitle = document.getElementById('quiz-status-title');
+            const statusDesc = document.getElementById('quiz-status-desc');
+            const adviceText = document.getElementById('quiz-advice-text');
+            const whatsappCta = document.getElementById('quiz-whatsapp-cta');
+
+            let currentStepIndex = 0;
+
+            function updateStep() {
+                steps.forEach((step, index) => {
+                    if (index === currentStepIndex) {
+                        step.classList.remove('hidden');
+                        step.classList.add('block');
+                    } else {
+                        step.classList.remove('block');
+                        step.classList.add('hidden');
+                    }
+                });
+
+                // Update indicators
+                const stepNum = currentStepIndex + 1;
+                stepIndicator.textContent = `Soru ${stepNum} / 5`;
+                const percent = stepNum * 20;
+                progressText.textContent = `${percent}%`;
+                progressBar.style.width = `${percent}%`;
+
+                // Buttons
+                if (currentStepIndex === 0) {
+                    prevBtn.classList.add('hidden');
+                } else {
+                    prevBtn.classList.remove('hidden');
+                }
+
+                if (currentStepIndex === steps.length - 1) {
+                    nextBtn.textContent = 'Sonucu Hesapla';
+                } else {
+                    nextBtn.textContent = 'İleri';
+                }
+            }
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentStepIndex > 0) {
+                        currentStepIndex--;
+                        updateStep();
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (currentStepIndex < steps.length - 1) {
+                        currentStepIndex++;
+                        updateStep();
+                    } else {
+                        calculateResult();
+                    }
+                });
+            }
+
+            function calculateResult() {
+                // Collect choices
+                const q1 = document.querySelector('input[name="q1"]:checked')?.value || 'ingiltere';
+                const q2 = document.querySelector('input[name="q2"]:checked')?.value || 'sgk';
+                const q3 = document.querySelector('input[name="q3"]:checked')?.value || 'uyumlu';
+                const q4 = document.querySelector('input[name="q4"]:checked')?.value || 'yok';
+                const q5 = document.querySelector('input[name="q5"]:checked')?.value || 'guclu';
+
+                let score = 60; // base
+
+                // Q1
+                if (q1 === 'ingiltere') score += 5;
+                else if (q1 === 'abd') score += 5;
+
+                // Q2
+                if (q2 === 'sgk' || q2 === 'isveren') score += 10;
+                else if (q2 === 'freelance' || q2 === 'nakit') score += 0;
+                else if (q2 === 'diger') score -= 5;
+
+                // Q3
+                if (q3 === 'uyumlu') score += 15;
+                else if (q3 === 'nakit_elde') score += 5;
+                else if (q3 === 'resmi_dusuk') score += 10;
+                else if (q3 === 'zayif') score -= 25;
+
+                // Q4
+                if (q4 === 'yok') score += 10;
+                else if (q4 === 'bir') score -= 10;
+                else if (q4 === 'cok') score -= 25;
+
+                // Q5
+                if (q5 === 'guclu') score += 10;
+                else if (q5 === 'orta') score += 5;
+                else if (q5 === 'zayif') score -= 15;
+
+                // Clamp
+                score = Math.max(30, Math.min(97, score));
+
+                // Hide questions & actions
+                questionsWrapper.classList.add('hidden');
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                stepIndicator.parentElement.parentElement.classList.add('hidden');
+
+                // Show result screen
+                resultScreen.classList.remove('hidden');
+
+                // Circle calculation
+                const radius = 42;
+                const circumference = 2 * Math.PI * radius;
+                const offset = circumference - (score / 100) * circumference;
+                resultProgress.style.strokeDasharray = `${circumference}`;
+                setTimeout(() => {
+                    resultProgress.style.strokeDashoffset = `${offset}`;
+                }, 100);
+
+                // Counter animation
+                let currentCount = 0;
+                const countInterval = setInterval(() => {
+                    if (currentCount >= score) {
+                        scoreVal.textContent = `${score}%`;
+                        clearInterval(countInterval);
+                    } else {
+                        currentCount++;
+                        scoreVal.textContent = `${currentCount}%`;
+                    }
+                }, 15);
+
+                // Text display
+                let title = '';
+                let desc = '';
+                let advice = '';
+
+                if (score >= 85) {
+                    title = 'Güçlü Profil & Yüksek Onay İhtimali!';
+                    desc = `Onay Oranınız yaklaşık %${score} olarak hesaplandı. Profiliniz vize kurallarına ve konsolosluk beklentilerine büyük oranda uyuyor.`;
+                    advice = 'Profiliniz mükemmele yakın olsa da, evrak tasnifi veya niyet mektubundaki en ufak bir usul hatası ret sebebi olabilir. Go Vize Mühendisliği ile bu yüksek oranı riske atmadan, kusursuz bir dosya ile vizenizi kesinleştirelim.';
+                } else if (score >= 65) {
+                    title = 'Orta Risk - Başarılı Olabilir!';
+                    desc = `Onay Oranınız yaklaşık %${score} olarak hesaplandı. Bazı güçlü yanlarınız olmakla birlikte dosyanızda iyileştirilmesi gereken alanlar bulunuyor.`;
+                    advice = 'Finansal belgelerinizin sunum şekli ve Türkiye\'ye olan bağlarınızın aktarılmasında profesyonel rötuşlar gerekiyor. Go Vize olarak, resmi ve gayriresmi durumlarınızı konsolosluğun en seveceği formata getirip onay şansınızı %90+ üzerine çıkartabiliriz.';
+                } else {
+                    title = 'Yüksek Risk - Mühendislik Şart!';
+                    desc = `Onay Oranınız yaklaşık %${score} olarak hesaplandı. Mevcut durumunuzla doğrudan yapılacak bir başvuru, çok yüksek ihtimalle vize reddi ile sonuçlanacaktır.`;
+                    advice = 'Özellikle nakit gelir beyanı, geçmiş ret geçmişi veya yetersiz bağlar gibi konularda ciddi bir finansal ve yapısal "Dosya Mühendisliği" çalışması yapılması zorunludur. Go Vize uzmanlığı ile bu açıkları kapatıp sıfırdan sarsılmaz bir senaryo kuralım.';
+                }
+
+                statusTitle.textContent = title;
+                statusDesc.textContent = desc;
+                adviceText.textContent = advice;
+
+                // WhatsApp Custom CTA message
+                const targetCountry = q1 === 'ingiltere' ? 'İngiltere' : q1 === 'abd' ? 'ABD' : 'Schengen';
+                const jobStatus = q2 === 'sgk' ? 'SGK\'lı Çalışan' : q2 === 'isveren' ? 'İş Veren' : q2 === 'freelance' ? 'Freelancer' : q2 === 'nakit' ? 'Nakit Gelirli' : 'Diğer';
+                const waMsg = `Merhaba Go Vize, vize onay testi yaptım ve onay oranım %${score} çıktı. Ülke: ${targetCountry}, Durum: ${jobStatus}. Profilimi ücretsiz inceleyip bir yol haritası çıkarabilir misiniz?`;
+                whatsappCta.href = `https://wa.me/+905015818619?text=${encodeURIComponent(waMsg)}`;
+            }
+
+            // FAQ ACCORDION LOGIC
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const toggle = item.querySelector('.faq-toggle');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.fa-chevron-down');
+
+                if (toggle && content) {
+                    toggle.addEventListener('click', () => {
+                        const isOpen = !content.classList.contains('hidden');
+                        
+                        // Close all FAQ items
+                        faqItems.forEach(otherItem => {
+                            const otherContent = otherItem.querySelector('.faq-content');
+                            const otherIcon = otherItem.querySelector('.fa-chevron-down');
+                            if (otherContent) otherContent.classList.add('hidden');
+                            if (otherIcon) otherIcon.classList.remove('rotate-180');
+                        });
+
+                        // Toggle clicked one
+                        if (!isOpen) {
+                            content.classList.remove('hidden');
+                            if (icon) icon.classList.add('rotate-180');
+                        }
+                    });
+                }
+            });
+
+            // BACK TO TOP LOGIC
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                        backToTopBtn.classList.add('opacity-100', 'translate-y-0');
+                    } else {
+                        backToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                        backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+                    }
+                });
+
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // SMOOTH SCROLLING FOR ALL ANCHOR NAVIGATION LINKS
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const hrefVal = this.getAttribute('href');
+                    if (hrefVal === '#') {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    const targetEl = document.querySelector(hrefVal);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
