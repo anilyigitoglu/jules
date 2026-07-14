@@ -59,19 +59,10 @@
     <!-- 1. NAVIGATION HEADER -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
+            <div class="flex justify-between items-center h-44">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <img src="./logo.png" alt="Go Vize Logo" class="h-20 w-auto">
-                </div>
-                <!-- Navigation Links (Middle on Desktop) -->
-                <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
-                    <a href="#" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Ana Sayfa</a>
-                    <a href="#hizmetler" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Hizmetlerimiz</a>
-                    <a href="#vize-hesaplama" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Onay Testi</a>
-                    <a href="#nasil-calisir" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Nasıl Çalışır?</a>
-                    <a href="#yorumlar" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">Yorumlar</a>
-                    <a href="#faq" class="text-slate-600 hover:text-brand-blue font-semibold text-sm transition-colors duration-300">S.S.S.</a>
+                    <img src="./logo.png" alt="Go Vize Logo" class="h-40 w-auto">
                 </div>
                 <!-- Contact Right -->
                 <div class="flex items-center space-x-4 sm:space-x-8">
@@ -336,7 +327,7 @@
     <!-- METHODOLOGY TIMELINE SECTION -->
     <section id="nasil-calisir" class="py-24 bg-white relative overflow-hidden">
         <div class="absolute inset-0 bg-slate-50/50 pointer-events-none"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Yöntemimiz</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Vize Mühendisliği Nasıl Çalışır?</h2>
@@ -344,103 +335,87 @@
                 <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
             </div>
 
-            <!-- Timeline Container -->
-            <div class="relative">
-                <!-- Center line for desktop -->
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-blue-200 via-brand-blue to-green-200 h-full"></div>
-
-                <!-- Steps -->
-                <div class="space-y-12 lg:space-y-20 relative">
-                    <!-- Step 1 -->
-                    <div class="flex flex-col lg:flex-row items-center group">
-                        <!-- Left text -->
-                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
-                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 1</span>
-                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Dosya Auditi & Boşluk Analizi</h3>
-                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                                Profilinizi adeta bir konsolosluk memuru gözüyle inceliyor; nakit gelir, zayıf bağlar veya geçmiş retler gibi risk barındıran noktaları tek tek tespit ediyoruz.
-                            </p>
-                        </div>
-                        <!-- Center Badge -->
-                        <div class="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300 relative">
-                            01
-                            <div class="absolute -inset-1 rounded-full border border-blue-600/30 animate-ping opacity-75"></div>
-                        </div>
-                        <!-- Right empty (placeholder for desktop symmetry) -->
-                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+            <!-- Full Column Stacked Timeline -->
+            <div class="relative pl-8 md:pl-12 border-l-2 border-slate-200 ml-4 md:ml-6 space-y-16">
+                <!-- Step 1 -->
+                <div class="relative group">
+                    <!-- Circle Indicator -->
+                    <div class="absolute -left-[45px] md:-left-[61px] top-0 w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold text-xl shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                        01
+                        <div class="absolute -inset-1 rounded-full border border-blue-600/30 animate-ping opacity-75 pointer-events-none"></div>
                     </div>
-
-                    <!-- Step 2 -->
-                    <div class="flex flex-col lg:flex-row items-center group">
-                        <!-- Left empty -->
-                        <div class="hidden lg:block w-full lg:w-1/2 lg:pr-16 text-right order-1"></div>
-                        <!-- Center Badge -->
-                        <div class="w-16 h-16 rounded-full bg-blue-500 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
-                            02
-                        </div>
-                        <!-- Right text -->
-                        <div class="w-full lg:w-1/2 lg:pl-16 text-center lg:text-left order-2 mt-6 lg:mt-0">
-                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 2</span>
-                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Yapısal Dosya Mimarlığı</h3>
-                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                                Tespit edilen açıklar için kişiye özel yasal finansal senaryolar ve "sosyal çapalar" üretiyoruz. Sıradan evrakları sarsılmaz bir savunma dosyasına dönüştürüyoruz.
-                            </p>
-                        </div>
+                    <!-- Card Content -->
+                    <div class="bg-brand-light rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Aşama 1</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Dosya Auditi & Boşluk Analizi</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Profilinizi adeta bir konsolosluk memuru gözüyle inceliyor; nakit gelir, zayıf bağlar veya geçmiş retler gibi risk barındıran noktaları tek tek tespit ediyoruz.
+                        </p>
                     </div>
+                </div>
 
-                    <!-- Step 3 -->
-                    <div class="flex flex-col lg:flex-row items-center group">
-                        <!-- Left text -->
-                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
-                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 3</span>
-                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Adli Tıp Hassasiyetinde İnceleme</h3>
-                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                                Tüm finansal dökümleri, banka giriş-çıkışlarını ve destekleyici belgeleri çapraz kontrole tabi tutarak tutarsızlıkları tamamen ortadan kaldırıyoruz.
-                            </p>
-                        </div>
-                        <!-- Center Badge -->
-                        <div class="w-16 h-16 rounded-full bg-blue-700 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
-                            03
-                        </div>
-                        <!-- Right empty -->
-                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+                <!-- Step 2 -->
+                <div class="relative group">
+                    <!-- Circle Indicator -->
+                    <div class="absolute -left-[45px] md:-left-[61px] top-0 w-16 h-16 rounded-full bg-blue-500 text-white flex items-center justify-center font-extrabold text-xl shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                        02
                     </div>
-
-                    <!-- Step 4 -->
-                    <div class="flex flex-col lg:flex-row items-center group">
-                        <!-- Left empty -->
-                        <div class="hidden lg:block w-full lg:w-1/2 lg:pr-16 text-right order-1"></div>
-                        <!-- Center Badge -->
-                        <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300">
-                            04
-                        </div>
-                        <!-- Right text -->
-                        <div class="w-full lg:w-1/2 lg:pl-16 text-center lg:text-left order-2 mt-6 lg:mt-0">
-                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Aşama 4</span>
-                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">İkna Gücü Yüksek Niyet Mektubu</h3>
-                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                                Memurun satır aralarını okuyarak her türlü şüpheyi daha uyanmadan yok eden, uluslararası standartlarda, profesyonel bir niyet mektubu kaleme alıyoruz.
-                            </p>
-                        </div>
+                    <!-- Card Content -->
+                    <div class="bg-brand-light rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Aşama 2</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Yapısal Dosya Mimarlığı</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Tespit edilen açıklar için kişiye özel yasal finansal senaryolar ve "sosyal çapalar" üretiyoruz. Sıradan evrakları sarsılmaz bir savunma dosyasına dönüştürüyoruz.
+                        </p>
                     </div>
+                </div>
 
-                    <!-- Step 5 -->
-                    <div class="flex flex-col lg:flex-row items-center group">
-                        <!-- Left text -->
-                        <div class="w-full lg:w-1/2 lg:pr-16 text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
-                            <span class="text-xs font-bold text-brand-green bg-green-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2 text-green-600">Aşama 5</span>
-                            <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-3 group-hover:text-brand-green transition-colors">Kusursuz Sunum ve Onay</h3>
-                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                                Dosyanızı konsolosluk sistemlerine dijital olarak en optimal hiyerarşide yüklüyor, süreci son saniyeye kadar takip ederek vize onayınızı güvenceye alıyoruz.
-                            </p>
-                        </div>
-                        <!-- Center Badge -->
-                        <div class="w-16 h-16 rounded-full bg-brand-green text-white flex items-center justify-center font-extrabold text-lg shadow-lg border-4 border-white z-10 order-1 lg:order-2 group-hover:scale-110 transition-transform duration-300 relative">
-                            05
-                            <div class="absolute -inset-1 rounded-full border border-brand-green/30 animate-ping opacity-75"></div>
-                        </div>
-                        <!-- Right empty -->
-                        <div class="hidden lg:block w-full lg:w-1/2 lg:pl-16 order-3"></div>
+                <!-- Step 3 -->
+                <div class="relative group">
+                    <!-- Circle Indicator -->
+                    <div class="absolute -left-[45px] md:-left-[61px] top-0 w-16 h-16 rounded-full bg-blue-700 text-white flex items-center justify-center font-extrabold text-xl shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                        03
+                    </div>
+                    <!-- Card Content -->
+                    <div class="bg-brand-light rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Aşama 3</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">Adli Tıp Hassasiyetinde İnceleme</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Tüm finansal dökümleri, banka giriş-çıkışlarını ve destekleyici belgeleri çapraz kontrole tabi tutarak tutarsızlıkları tamamen ortadan kaldırıyoruz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative group">
+                    <!-- Circle Indicator -->
+                    <div class="absolute -left-[45px] md:-left-[61px] top-0 w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-extrabold text-xl shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                        04
+                    </div>
+                    <!-- Card Content -->
+                    <div class="bg-brand-light rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Aşama 4</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-navy-900 mb-3 group-hover:text-brand-blue transition-colors">İkna Gücü Yüksek Niyet Mektubu</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Memurun satır aralarını okuyarak her türlü şüpheyi daha uyanmadan yok eden, uluslararası standartlarda, profesyonel bir niyet mektubu kaleme alıyoruz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative group">
+                    <!-- Circle Indicator -->
+                    <div class="absolute -left-[45px] md:-left-[61px] top-0 w-16 h-16 rounded-full bg-brand-green text-white flex items-center justify-center font-extrabold text-xl shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                        05
+                        <div class="absolute -inset-1 rounded-full border border-brand-green/30 animate-ping opacity-75 pointer-events-none"></div>
+                    </div>
+                    <!-- Card Content -->
+                    <div class="bg-brand-light rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-xs font-bold text-brand-green bg-green-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3 text-green-600">Aşama 5</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-navy-900 mb-3 group-hover:text-brand-green transition-colors">Kusursuz Sunum ve Onay</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Dosyanızı konsolosluk sistemlerine dijital olarak en optimal hiyerarşide yüklüyor, süreci son saniyeye kadar takip ederek vize onayınızı güvenceye alıyoruz.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -481,118 +456,13 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section id="yorumlar" class="py-24 bg-brand-light relative border-t border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Başarı Hikayeleri</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Onay Alan Danışanlarımızın Yorumları</h2>
-                <p class="text-slate-600 text-sm md:text-base">Özellikle vize reddi almış veya zorlu finansal duruma sahip danışanlarımızın başarı hikayelerini inceleyin.</p>
-                <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
-            </div>
-
-            <!-- Testimonials Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
-                    <div>
-                        <!-- Stars -->
-                        <div class="flex text-amber-500 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                        </div>
-                        <!-- Tag -->
-                        <span class="inline-block px-3 py-1 bg-green-50 text-brand-green text-xs font-bold rounded-full mb-4">İngiltere Vizesi | Nakit Gelir</span>
-                        <!-- Comment -->
-                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
-                            "Freelance çalıştığım için düzenli maaş bordrom yoktu ve çoğu acente 'vize alamazsın' dedi. Go Vize ekibi nakit gelirlerimi resmi ve son derece tutarlı bir finansal senaryoya dönüştürdü. Sonuç: İngiltere vizem ilk başvuruda onaylandı!"
-                        </p>
-                    </div>
-                    <!-- Client Info -->
-                    <div class="flex items-center pt-6 border-t border-slate-50">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
-                            AY
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Ahmet Y.</h4>
-                            <p class="text-xs text-slate-400">Yazılım Geliştirici (Freelancer)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
-                    <div>
-                        <!-- Stars -->
-                        <div class="flex text-amber-500 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                        </div>
-                        <!-- Tag -->
-                        <span class="inline-block px-3 py-1 bg-blue-50 text-brand-blue text-xs font-bold rounded-full mb-4">Vize Reddi Kurtarma | 2 Ret Sonrası</span>
-                        <!-- Comment -->
-                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
-                            "Daha önce başka firmalarla yaptığım 2 başvurudan da ret almıştım. Umudumu tamamen yitirmişken Go Vize ile tanıştım. Eski ret gerekçelerini adli tıp hassasiyetinde analiz edip niyet mektubunda memurun tüm şüphelerini yok ettiler. Vizemi söke söke aldık!"
-                        </p>
-                    </div>
-                    <!-- Client Info -->
-                    <div class="flex items-center pt-6 border-t border-slate-50">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
-                            EB
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Elif B.</h4>
-                            <p class="text-xs text-slate-400">İnsan Kaynakları Uzmanı</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">
-                    <div>
-                        <!-- Stars -->
-                        <div class="flex text-amber-500 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                            <i class="fa-solid fa-star ml-1"></i>
-                        </div>
-                        <!-- Tag -->
-                        <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full mb-4">ABD Vizesi | Türkiye'ye Bağlar</span>
-                        <!-- Comment -->
-                        <p class="text-slate-600 text-sm lg:text-base leading-relaxed italic mb-6">
-                            "ABD konsolosluğunun mülakatta bağlarımı sorgulayacağını biliyorduk. Go Vize ekibi mülakat öncesi beni harika bir simülasyonla hazırladı ve Türkiye'ye bağlarımı kanıtlayan kusursuz bir dosya kurguladı. Mülakatım 1 dakika sürdü ve onaylandı!"
-                        </p>
-                    </div>
-                    <!-- Client Info -->
-                    <div class="flex items-center pt-6 border-t border-slate-50">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-brand-blue font-bold text-lg">
-                            CM
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="font-bold text-navy-900 text-sm lg:text-base">Caner M.</h4>
-                            <p class="text-xs text-slate-400">Klinik Sahibi (Diş Hekimi)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- FAQ SECTION WITH ACCORDIONS -->
     <section id="faq" class="py-24 bg-white relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-brand-blue font-bold tracking-wider text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full inline-block mb-3">Sıkça Sorulan Sorular</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 tracking-tight">Merak Edilenler & Uzman Cevapları</h2>
-                <p class="text-slate-600 text-sm md:text-base">Vize süreçleri, nakit gelir beyanları ve ret durumları hakkında en çok sorulan sorular.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 tracking-tight">Merak Edilenler</h2>
+                <p class="text-slate-600 text-sm md:text-base">Vize süreçleri, nakit gelir beyanları ve ret durumları hakkında uzman görüşlerimiz.</p>
                 <div class="w-16 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
             </div>
 
@@ -697,7 +567,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-center gap-6">
             
             <div class="text-center lg:text-left flex-1">
-                <img src="./logo.png" alt="Go Vize Logo" class="h-16 w-auto mb-3 mx-auto lg:mx-0 opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <img src="./logo.png" alt="Go Vize Logo" class="h-32 w-auto mb-3 mx-auto lg:mx-0 opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <p class="text-xs text-slate-500 lg:whitespace-nowrap">
                     Go Vize, bağımsız ve özel bir vize danışmanlık firmasıdır. Konsolosluklarla resmi bir bağı bulunmamakta olup, profesyonel dosya hazırlama hizmeti sunar.
                 </p>
